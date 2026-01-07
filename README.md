@@ -2,18 +2,18 @@
 
 A flexible VPN manager script that supports multiple VPN providers through OpenVPN configuration files. Features an interactive rofi menu system for easy provider, country, city, and server selection.
 
-## ✨ Features
+## Features
 
-- 🌍 **Multi-Provider Support** - Manage multiple VPN providers from one interface
-- 📍 **Hierarchical Selection** - Choose provider → country → city → server
-- 🎲 **Random Selection** - Randomly select provider, country, city, or server
-- 🔒 **Scrambled Connection Support** - Automatically detects and offers scrambled servers when available
-- 🔐 **Per-Provider Authentication** - Each provider has its own credentials file
-- 📊 **Connection Feedback** - Desktop notifications with connection status and public IP
-- ⚡ **Smart Server Detection** - Automatically parses OpenVPN files and builds dynamic menus
-- 🗺️ **Global Coverage** - Supports 70+ country codes across all continents
+- **Multi-Provider Support** - Manage multiple VPN providers from one interface
+- **Hierarchical Selection** - Choose provider → country → city → server
+- **Random Selection** - Randomly select provider, country, city, or server
+- **Scrambled Connection Support** - Automatically detects and offers scrambled servers when available
+- **Per-Provider Authentication** - Each provider has its own credentials file
+- **Connection Feedback** - Desktop notifications with connection status and public IP
+- **Smart Server Detection** - Automatically parses OpenVPN files and builds dynamic menus
+- **Global Coverage** - Supports 70+ country codes across all continents
 
-## 📋 Requirements
+## Requirements
 
 - `bash`
 - `openvpn`
@@ -22,25 +22,28 @@ A flexible VPN manager script that supports multiple VPN providers through OpenV
 - `curl`
 - `sudo` privileges
 
-## 🚀 Installation
+## Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/digitalcanine/multivpn
    cd multivpn
    ```
 
 2. Create the providers directory structure:
+
    ```bash
    mkdir -p providers
    ```
 
 3. Make the script executable:
+
    ```bash
    chmod +x dc-multivpn.sh
    ```
 
-## 📁 Directory Structure
+## Directory Structure
 
 ```
 multivpn/
@@ -59,7 +62,7 @@ multivpn/
             └── ...
 ```
 
-## ⚙️ Setup
+## Setup
 
 ### 1. Add a VPN Provider
 
@@ -83,6 +86,7 @@ EOF
 ```
 
 **Security note:** Keep your auth file secure:
+
 ```bash
 chmod 600 auth
 ```
@@ -107,12 +111,14 @@ city-countrycode-###-scramble.ovpn
 ```
 
 **Examples:**
+
 - `new-york-us-001.ovpn`
 - `london-uk-042.ovpn`
 - `tokyo-jp-015-scramble.ovpn`
 - `los-angeles-us-100.ovpn`
 
 **Format breakdown:**
+
 - `city`: City name (lowercase, hyphens for spaces)
 - `countrycode`: Two-letter country code (lowercase)
 - `###`: Three-digit server number
@@ -132,7 +138,7 @@ The script recognizes 70+ country codes including:
 
 ## 🎮 Usage
 
-### Run the script:
+### Run the script
 
 ```bash
 ./dc-multivpn.sh
@@ -145,7 +151,7 @@ alt + shift + v
     /path/to/multivpn/dc-multivpn.sh
 ```
 
-### Interactive Menu Flow:
+### Interactive Menu Flow
 
 1. **Select Provider** - Choose from your configured providers or select random
 2. **Select Country** - Choose a country or random
@@ -155,7 +161,7 @@ alt + shift + v
 6. **Enter Password** - Provide sudo password for OpenVPN
 7. **Connection Status** - Notification shows connection details and public IP
 
-### Menu Options:
+### Menu Options
 
 - **[Random Provider]** - Selects a random provider
 - **[Random Country]** - Selects a random country from the provider
@@ -163,7 +169,7 @@ alt + shift + v
 - **[Random Server]** - Selects a random server
 - **[Disconnect]** - Kills any active OpenVPN connection
 
-## 🔧 Configuration
+## Configuration
 
 ### Customizing Rofi Appearance
 
@@ -189,36 +195,41 @@ Edit the sleep duration after OpenVPN launch (line ~390):
 sleep 8  # Wait 8 seconds for connection to establish
 ```
 
-## 🛡️ Security Considerations
+## Security Considerations
 
 - **Auth Files:** Keep authentication files secure with `chmod 600 auth`
 - **Sudo Access:** The script requires sudo privileges to run OpenVPN
 - **Password Storage:** Consider using `sudo` with NOPASSWD for OpenVPN in `/etc/sudoers` to avoid entering password each time:
+
   ```
   your_username ALL=(ALL) NOPASSWD: /usr/bin/openvpn, /usr/bin/pkill openvpn
   ```
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### No providers found
+
 - Ensure you have created provider directories in the `providers/` folder
 - Check that each provider has an `auth` file and `servers/` directory
 
 ### No servers found
+
 - Verify your `.ovpn` files follow the naming convention: `city-cc-###.ovpn`
 - Ensure files are in the `providers/PROVIDER_NAME/servers/` directory
 
 ### Connection fails
+
 - Check that your `auth` file contains correct credentials
 - Verify OpenVPN configs are valid
 - Check system logs: `journalctl -u openvpn --since "5 minutes ago"`
 
 ### IP not showing
+
 - The script waits 8 seconds and retries 3 times
 - Check your internet connection
 - Verify `curl` is installed
 
-## 📝 Example Setup
+## Example Setup
 
 Complete example for NordVPN:
 
@@ -243,21 +254,21 @@ cp ~/Downloads/us9999.nordvpn.com.tcp.ovpn servers/new-york-us-001.ovpn
 cp ~/Downloads/uk2345.nordvpn.com.tcp.ovpn servers/london-uk-001.ovpn
 ```
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Feel free to submit issues or pull requests for:
+
 - Additional country code support
 - Bug fixes
 - Feature enhancements
 - Documentation improvements
 
-## 📄 License
+## License
 
 This project is open source and available under the MIT License.
 
-## 🔗 Related Projects
+## Related Projects
 
 - [bspwm-rice](https://github.com/digitalcanine/bspwm-rice) - My complete bspwm desktop configuration that includes MultiVPN integration
 
 ---
-
