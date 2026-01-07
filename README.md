@@ -136,7 +136,7 @@ The script recognizes 70+ country codes including:
 **Middle East:** ae, sa, il, qa  
 **Africa:** za, eg, ng, ke, ma
 
-## 🎮 Usage
+## Usage
 
 ### Run the script
 
@@ -270,5 +270,3 @@ This project is open source and available under the MIT License.
 ## Related Projects
 
 - [bspwm-rice](https://github.com/digitalcanine/bspwm-rice) - My complete bspwm desktop configuration that includes MultiVPN integration
-
----
